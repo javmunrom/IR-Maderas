@@ -1,13 +1,13 @@
-:root{
+:root {
   --color-input: #303030;
   --color-label: #5e5e5e;
   --color-btn-disabled: #5757577e;
   --color-error: #cc0033;
   --color-error-background: #fce4e4;
   --color-border-disabled: #706c6c;
-  --main-button-hover-dark-color: #23c483;
+  --main-button-hover-dark-color: #0e452f;
   --main-button-hover-light-color: #23c483;
-  --main-button-shadow-hover-color: rgba(0,0,0,0.4);
+  --main-button-shadow-hover-color: rgba(0, 0, 0, 0.4);
   --main-black: #111;
 }
 
@@ -49,24 +49,37 @@
 
 .class-form-group {
   position: relative;
+  left: 6%;
 }
 
-input.class-form-input,
 select.class-form-input {
   width: 100%;
-  font-family: inherit;
+  font-family: 'Georgia', serif;
   font-size: 1rem;
-  color: var(--color-input);
+  color: rgb(0, 0, 0);
   padding: 0.6em 0.3em;
   border: none;
   outline: none;
   border-bottom: 1px solid var(--main-button-hover-dark-color);
+  background-color: white;
+}
+
+input.class-form-input {
+  width: 90%; /* O el porcentaje que desees */
+  font-family: 'Times New Roman', serif;
+  font-size: 0.8rem; /* Tamaño de fuente más pequeño */
+  color: white;
+  padding: 0.4em 0.2em; /* Tamaño de padding más pequeño */
+  border: none;
+  outline: none;
+  border-bottom: 1px solid white; /* Hice la línea inferior más delgada */
   background-color: transparent;
+  margin: 0 auto; /* Esto centrará horizontalmente el elemento */
 }
 
 textarea.class-form-input {
   width: 100%;
-  font-family: inherit;
+  font-family: 'Georgia', serif;
   font-size: 1rem;
   color: var(--color-input);
   padding: 0.6em 0.3em;
@@ -77,13 +90,14 @@ textarea.class-form-input {
 }
 
 .class-form-label {
-  color: var(--color-label);
+  color: white;
   cursor: text;
   position: absolute;
   top: 0;
   left: 5px;
   transform: translateY(10px);
   transition: transform 0.5s, color 0.3s;
+  font-family: 'Georgia', serif;
 }
 
 .class-form-input:focus + .class-form-label,
@@ -92,11 +106,13 @@ textarea.class-form-input {
 .files-group > label {
   transform: translateY(-15px) scale(0.7);
   transform-origin: top left;
-  color: var(--main-button-hover-dark-color);
+  color: white;
   cursor: pointer;
+  font-size: 1.4em;
+  margin-top: -10px;
 }
 
-.interval-group{
+.interval-group {
   margin-bottom: 20px;
 }
 
@@ -112,7 +128,7 @@ textarea.class-form-input {
 input.class-form-input[required] + label.class-form-label:after,
 select.class-form-input[required] + label.class-form-label:after,
 textarea.class-form-input[required] + label.class-form-label:after {
-  content: "*";
+  content: '*';
   color: var(--color-error) !important;
 }
 
@@ -134,11 +150,11 @@ select.class-form-input {
 }
 
 @media screen and (max-width: 450px) {
-    .class-form-group{
-        width: 90% !important;
-        margin-top: 20px;
-    }
+  .class-form-group {
+    width: 90% !important;
+    margin-top: 20px;
   }
+}
 
 /* ERRORS */
 

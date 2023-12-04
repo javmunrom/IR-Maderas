@@ -1,43 +1,42 @@
 class TokenService {
-    getLocalRefreshToken() {
-        const user = JSON.parse(localStorage.getItem("user"));
-        return user?.refreshToken;
+  getLocalRefreshToken() {
+    const user = JSON.parse(localStorage.getItem('user'))
+    return user?.refreshToken
+  }
+
+  getLocalAccessToken() {
+    const jwtString = localStorage.getItem('jwt')
+
+    try {
+      if (jwtString !== null && jwtString !== undefined) {
+        return JSON.parse(jwtString)
+      } else {
+        return null
+      }
+    } catch (error) {
+      console.error('Error parsing JWT:', error)
+      return null
     }
+  }
 
-    // getLocalAccessToken() {
-    //     const user = JSON.parse(localStorage.getItem("user"));
-    //     return user?.token;
-    // }
+  updateLocalAccessToken(token) {
+    window.localStorage.setItem('jwt', JSON.stringify(token))
+  }
 
-    getLocalAccessToken() {
-        const jwt = JSON.parse(localStorage.getItem("jwt"));
-        return jwt ? jwt : null;
-    }
+  getUser() {
+    return JSON.parse(localStorage.getItem('user'))
+  }
 
-    updateLocalAccessToken(token) {
-        window.localStorage.setItem("jwt", JSON.stringify(token));
-    }
+  setUser(user) {
+    window.localStorage.setItem('user', JSON.stringify(user))
+  }
 
-    // updateLocalAccessToken(token) {
-    //     let user = JSON.parse(localStorage.getItem("user"));
-    //     user.token = token;
-    //     window.localStorage.setItem("user", JSON.stringify(user));
-    // }
-
-    getUser() {
-        return JSON.parse(localStorage.getItem("user"));
-    }
-
-    setUser(user) {
-        window.localStorage.setItem("user", JSON.stringify(user));
-    }
-
-    removeUser() {
-        window.localStorage.removeItem("user");
-        window.localStorage.removeItem("jwt");
-    }
-
+  removeUser() {
+    window.localStorage.removeItem('user')
+    window.localStorage.removeItem('jwt')
+  }
 }
-const tokenService = new TokenService();
 
-export default tokenService;
+const tokenService = new TokenService()
+
+export default tokenService

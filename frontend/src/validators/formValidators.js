@@ -1,26 +1,33 @@
 export const formValidators = {
-    notEmptyValidator: {
-        validate: (value) => {
-            return value.trim().length > 0;
-        },
-        message: "The field cannot be empty"
+  notEmptyValidator: {
+    validate: (value) => {
+      return value.trim().length > 0
     },
-    telephoneValidator: {
-        validate: (value) => {
-            return value.trim().length === 9 && /^\d+$/.test(value);
-        },
-        message: "The telephone number must be 9 digits long and contain only numbers"
+    message: 'The field cannot be empty',
+  },
+  telephoneValidator: {
+    validate: (value) => {
+      return value.trim().length === 9 && /^\d+$/.test(value)
     },
-    notNoneTypeValidator: {
-        validate: (value) => {
-            return value !== "None";
-        },
-        message: "Please, select a type"
+    message:
+      'The telephone number must be 9 digits long and contain only numbers',
+  },
+  notNoneTypeValidator: {
+    validate: (value) => {
+      return value !== 'None'
     },
-    validPhoneNumberValidator: {
-        validate: (value) => {
-            return value.trim().length === 9 && /^\d+$/.test(value);
-        },
-        message: "The phone number must be 9 digits long and contain only numbers"
-    }
+    message: 'Please, select a type',
+  },
+  validPhoneNumberValidator: {
+    validate: (value) => {
+      return value.trim().length === 9 && /^\d+$/.test(value)
+    },
+    message: 'The phone number must be 9 digits long and contain only numbers',
+  },
+  passwordsMatchValidator: {
+    validate: (value, allValues) => {
+      return value === allValues.password
+    },
+    message: 'Passwords do not match',
+  },
 }

@@ -54,25 +54,24 @@ const FormInput = forwardRef(({ tag, name, type, defaultValue, values, isRequire
     switch(type){
 
         case "select":
-            return(
-                <div className={`class-form-group ${inputErrors.length>0 ? "class-error-form" : ""}`} id={`${name}_form`} style={numberOfColumns>1 ? {paddingTop: `2%`, width: `${100/numberOfColumns-3}%`} : {marginTop: `7.5%`}}>	
-                    <select className="class-form-input" disabled={disabled} id={`${name}`} name={`${name}`} required={isRequired} defaultValue={defaultValue} ref={inputField}>
-                        {
-                            values && values.map((option, index) => {
-                                return(
-                                    <option key={index} selected={option===defaultValue}>{option}</option>
-                                )
-                            })
-                        }
-                    </select>
-                    <label htmlFor={`${name}`} className="class-form-label" style={numberOfColumns>1 ? {paddingLeft: `1%`} : {}}>{tag}:</label>
-                    {
-                        inputErrors.length > 0 && inputErrors.map((error, index) => {
-                            return(<span key={index} className="class-error-message">{error}</span>)
-                        })
-                    }
+            return (
+                <div className={`class-form-group ${inputErrors.length > 0 ? "class-error-form" : ""}`} id={`${name}_form`} style={numberOfColumns > 1 ? { paddingTop: `2%`, width: `${100 / numberOfColumns - 3}%` } : { marginTop: `7.5%` }}>
+                  <select className="class-form-input" disabled={disabled} id={`${name}`} name={`${name}`} required={isRequired} defaultValue={defaultValue} ref={inputField}>
+                    {values && values.map((option, index) => {
+                      return (
+                        <option key={index} value={option.value} selected={option.value === defaultValue}>{option.label}</option>
+                      )
+                    })}
+                  </select>
+                  <label htmlFor={`${name}`} className="class-form-label" style={numberOfColumns > 1 ? { paddingLeft: `1%` } : {}}>{tag}:</label>
+                  {
+                    inputErrors.length > 0 && inputErrors.map((error, index) => {
+                      return (<span key={index} className="class-error-message">{error}</span>)
+                    })
+                  }
                 </div>
-            );
+              );
+            
         
         case "textarea":
 

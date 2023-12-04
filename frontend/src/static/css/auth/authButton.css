@@ -1,3 +1,13 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url('../../images/fondoIR.jpg');
+  background-size: cover;
+}
+
 .auth-button {
   padding: 1.3em 3em;
   font-size: 12px;
@@ -25,19 +35,19 @@
   transform: translateY(-1px);
 }
 
-.blue{
+.blue {
   border: solid 2px var(--main-blue-color) !important;
 }
 
-.blue:hover{
+.blue:hover {
   background-color: var(--main-blue-color) !important;
   box-shadow: 0px 15px 20px rgba(46, 92, 229, 0.4);
 }
 
-.danger{
+.danger {
   border: solid 2px var(--main-red-color) !important;
 }
-.danger:hover{
+.danger:hover {
   background-color: var(--main-red-color) !important;
   box-shadow: 0px 15px 20px rgba(229, 46, 46, 0.4);
 }

@@ -1,6 +1,6 @@
-import "./css/formGenerator.css";
-import "filepond/dist/filepond.min.css";
-import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+import './css/formGenerator.css'
+import 'filepond/dist/filepond.min.css'
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
 
 import {
   useState,
@@ -8,113 +8,117 @@ import {
   forwardRef,
   useEffect,
   useRef,
-} from "react";
+} from 'react'
 
-import PropTypes from "prop-types";
-import FormInput from "./formInput";
+import PropTypes from 'prop-types'
+import FormInput from './formInput'
 
 const FormGenerator = forwardRef((props, ref) => {
-  const [formValues, setFormValues] = useState({});
-  const [submitForm, setSubmitForm] = useState(false);
+  const [formValues, setFormValues] = useState({})
+  const [submitForm, setSubmitForm] = useState(false)
 
-  let formElement = useRef(null);
-  let formInputs = useRef([]);
+  let formElement = useRef(null)
+  let formInputs = useRef([])
 
   useImperativeHandle(ref, () => {
     return {
       validate: () => {
-        let isValid = true;
+        let isValid = true
         for (let i = 0; i < props.inputs.length; i++) {
-          let input = props.inputs[i];
+          let input = props.inputs[i]
           for (let validator of input.validators) {
-            if (!validator.validate(formValues[input.name])) {
-              console.log(input);
+            if (
+              validator &&
+              validator.validate &&
+              !validator.validate(formValues[input.name])
+            ) {
+              console.log(input)
               console.log(formValues[input.name])
-              formInputs.current[i].setErrors([validator.message]);
-              isValid = false;
+              formInputs.current[i].setErrors([validator.message])
+              isValid = false
             }
           }
         }
 
-        return isValid;
+        return isValid
       },
       updateForm: () => {
         if (Object.keys(formValues).length === 0) {
-          let newFormValues = {};
+          let newFormValues = {}
           for (let input of props.inputs) {
-            if (input.type === "interval") {
-              newFormValues[`min_${input.name}`] = input.min;
-              newFormValues[`max_${input.name}`] = input.max;
+            if (input.type === 'interval') {
+              newFormValues[`min_${input.name}`] = input.min
+              newFormValues[`max_${input.name}`] = input.max
             } else {
               newFormValues[input.name] = input.defaultValue
                 ? input.defaultValue
-                : "";
+                : ''
             }
           }
-          setFormValues(newFormValues);
+          setFormValues(newFormValues)
         }
-      }
-    };
-  });
+      },
+    }
+  })
 
   function handleSubmit(e) {
-    e.preventDefault();
-    let formValuesCopy = {};
+    e.preventDefault()
+    let formValuesCopy = {}
 
     for (let i = 0; i < props.inputs.length; i++) {
-      let input = props.inputs[i];
-      if (input.type === "files") {
+      let input = props.inputs[i]
+      if (input.type === 'files') {
         formValuesCopy[input.name] = formInputs.current[i].files.map((file) =>
           file.getFileEncodeBase64String()
-        );
-      } else if (input.type === "interval") {
-        formValuesCopy[`min_${input.name}`] = formInputs.current[i].min;
-        formValuesCopy[`max_${input.name}`] = formInputs.current[i].max;
+        )
+      } else if (input.type === 'interval') {
+        formValuesCopy[`min_${input.name}`] = formInputs.current[i].min
+        formValuesCopy[`max_${input.name}`] = formInputs.current[i].max
       } else {
-        formValuesCopy[input.name] = formInputs.current[i].value;
+        formValuesCopy[input.name] = formInputs.current[i].value
       }
     }
-    setFormValues(formValuesCopy);
-    setSubmitForm(true);
+    setFormValues(formValuesCopy)
+    setSubmitForm(true)
   }
 
   useEffect(() => {
     if (Object.keys(formValues).length === 0) {
-      let newFormValues = {};
+      let newFormValues = {}
       for (let input of props.inputs) {
-        if (input.type === "interval") {
-          newFormValues[`min_${input.name}`] = input.min;
-          newFormValues[`max_${input.name}`] = input.max;
+        if (input.type === 'interval') {
+          newFormValues[`min_${input.name}`] = input.min
+          newFormValues[`max_${input.name}`] = input.max
         } else {
           newFormValues[input.name] = input.defaultValue
             ? input.defaultValue
-            : "";
+            : ''
         }
       }
-      setFormValues(newFormValues);
+      setFormValues(newFormValues)
     }
 
     if (props.scrollable) {
-      formElement.current.style.overflow = "scroll";
+      formElement.current.style.overflow = 'scroll'
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formValues, props.inputs]);
+  }, [formValues, props.inputs])
 
   useEffect(() => {
     if (submitForm) {
-      props.onSubmit({ values: formValues });
-      setSubmitForm(false);
+      props.onSubmit({ values: formValues })
+      setSubmitForm(false)
     }
-  }, [submitForm]);
+  }, [submitForm])
 
   useEffect(() => {
-    document.addEventListener("keyup", (e) => {
-      if (e.key === "Enter" && props.listenEnterKey) {
-        handleSubmit(e);
+    document.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter' && props.listenEnterKey) {
+        handleSubmit(e)
       }
-    });
-  }, []);
+    })
+  }, [])
 
   return (
     <div className="class-profile-form">
@@ -124,9 +128,9 @@ const FormGenerator = forwardRef((props, ref) => {
         style={
           props.numberOfColumns > 1
             ? {
-                flexDirection: "row",
-                flexWrap: "wrap",
-                justifyContent: "center",
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
               }
             : {}
         }
@@ -157,7 +161,7 @@ const FormGenerator = forwardRef((props, ref) => {
                   ref={(input) => (formInputs.current[index] = input)}
                 />
               </>
-            );
+            )
           })}
         {props.childrenPosition === -1 && props.children}
       </form>
@@ -166,8 +170,8 @@ const FormGenerator = forwardRef((props, ref) => {
         {props.buttonText}
       </button>
     </div>
-  );
-});
+  )
+})
 
 FormGenerator.propTypes = {
   inputs: PropTypes.array,
@@ -177,16 +181,16 @@ FormGenerator.propTypes = {
   numberOfColumns: PropTypes.number,
   childrenPosition: PropTypes.number,
   listenEnterKey: PropTypes.bool,
-};
+}
 
 FormGenerator.defaultProps = {
   inputs: [],
   onSubmit: () => {},
-  buttonText: "Enviar",
-  buttonClassName: "",
+  buttonText: 'Enviar',
+  buttonClassName: '',
   numberOfColumns: 1,
   childrenPosition: 0,
-listenEnterKey: false,
-};
+  listenEnterKey: false,
+}
 
-export default FormGenerator;
+export default FormGenerator
