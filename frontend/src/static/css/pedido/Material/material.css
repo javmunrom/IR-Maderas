@@ -1,0 +1,71 @@
+.opciones-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.opcion-material {
+  text-align: center;
+  margin-bottom: 20px; /* Ajusta la distancia entre cada opción */
+}
+
+.opcion-material img {
+  width: 100%;
+  max-width: 200px; /* Ajusta el tamaño máximo según tus necesidades */
+  height: auto;
+
+  border-radius: 10px; /* Puedes ajustar el valor según tu preferencia */
+  margin-bottom: 10px;
+}
+
+.opcion-material .realizar-pedido-btn {
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff; /* Cambiado a blanco para que sea visible en botón beige */
+  background-color: #d2b48c; /* Cambiado a beige */
+  border: solid 2px #d2b48c; /* Cambiado a beige */
+  border-radius: 10px; /* Puedes ajustar el valor según tu preferencia */
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  width: 80%;
+}
+.titulo-material {
+  text-align: center;
+  margin-top: 20px; /* Ajusta la distancia entre el título y las opciones */
+}
+
+.opcion-material .realizar-pedido-btn:hover {
+  background-color: #a08a60;
+  box-shadow: 0px 15px 20px rgba(229, 177, 46, 0.4);
+  color: #fff;
+
+  transform: translateY(-7px);
+}
+
+.opcion-material .realizar-pedido-btn:active {
+  transform: translateY(-1px);
+}
+.opcion-contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 2px solid #1f1b15;
+  border-radius: 15px;
+}
+
+.nombre-material {
+  font-size: 14px;
+  margin-top: 10px;
+  color: #555;
+}

@@ -12,6 +12,10 @@ import tokenService from './services/token.service'
 import UserListAdmin from './admin/users/UserListAdmin'
 import UserEditAdmin from './admin/users/UserEditAdmin'
 import SwaggerDocs from './public/swagger'
+import HomeUser from './homeUser'
+import ElegirMaterial from './pedido/Material'
+import ElegirColor from './pedido/color'
+import CrearPiezaPage from './pedido'
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
@@ -78,6 +82,10 @@ function App() {
             }
           />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/homeuser" element={<HomeUser />} />
+          <Route path="/material" element={<ElegirMaterial />} />
+          <Route path="/color" element={<ElegirColor />} />
+          <Route path="/pieza" element={<CrearPiezaPage />} />
         </>
       )
     }

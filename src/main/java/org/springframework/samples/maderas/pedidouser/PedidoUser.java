@@ -1,6 +1,5 @@
 package org.springframework.samples.maderas.pedidouser;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class PedidoUser extends BaseEntity {
     LocalDateTime fechaPedido;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    LocalDateTime fechaEntregaEstimada;
+    LocalDateTime fechaPedidoTerminado;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "pedido_user_id")
@@ -43,9 +42,9 @@ public class PedidoUser extends BaseEntity {
     public PedidoUser() {
     }
 
-    public PedidoUser(LocalDateTime fechaPedido, LocalDateTime fechaEntregaEstimada, Double precio, List<Pieza> piezas) {
-        this.fechaPedido = fechaPedido;
-        this.fechaEntregaEstimada = fechaEntregaEstimada;
+    public PedidoUser(LocalDateTime fechaPedido, LocalDateTime fechaPedidoTerminado, Double precio, List<Pieza> piezas) {
+        this.fechaPedido = LocalDateTime.now();
+        this.fechaPedidoTerminado = fechaPedidoTerminado;
         this.precio = precio;
         this.piezas = piezas;
     }

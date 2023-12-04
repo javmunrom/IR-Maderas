@@ -60,10 +60,11 @@ public class SecurityConfiguration {
                 PathRequest.toStaticResources().atCommonLocations(), 
                 PathRequest.toH2Console()
             ).permitAll()
-			.requestMatchers("/","/resources/**", "/webjars/**", "/static/**", "/swagger-resources/**").permitAll()
+			.requestMatchers("/","/resources/**", "/webjars/**", "/static/**", "/swagger-resources/**", "/api/v1/tableros").permitAll()
 			.requestMatchers( "/api/v1/games/**","/api/v1/players/**","/api/v1/boards","/", "/oups","/api/v1/auth/**","/v3/api-docs/**","/swagger-ui.html","/swagger-ui/**", "/api/v1/**").permitAll()	
 			.requestMatchers("/api/v1/users","api/v1/players/combinations", "/api/v1/auth", "/api/v1/players/addCombination", "/api/v1/players/**", "api/v1/combination/**", "/h2-console", "/h2-console/**").permitAll()											
 			.requestMatchers("/api/v1/combination/**", "api/v1/players/addCombination", "api/v1/players/combinations").permitAll()
+			.requestMatchers("/api/v1/tableros", "/api/v1/tableros/**").permitAll()
 			.requestMatchers("/api/v1/clinicOwners/all").hasAuthority(ADMIN)
 			.requestMatchers(HttpMethod.DELETE, "/api/v1/consultations/**").hasAuthority(ADMIN)
 			.requestMatchers("/api/v1/owners/*/pets/**").authenticated()				
