@@ -18,10 +18,10 @@ const ElegirMaterial = ({ onMaterialSeleccionado }) => {
   return (
     <div>
       <h2 className="titulo-material">Selecciona el tipo de material</h2>
-      <div className="opciones-container">
+      <div className="material-container">
         {opcionesDeMaterial.map((opcion) => (
-          <div key={opcion.tipo} className="opcion-material">
-            <div className="opcion-contenedor">
+          <div key={opcion.tipo} className="material-material">
+            <div className="material-contenedor">
               <img src={opcion.imagen} alt={opcion.tipo} />
               <p className="nombre-material">{opcion.tipo}</p>
               {/* Modificado para pasar la opción completa a handleMaterialSeleccionado */}
@@ -35,7 +35,6 @@ const ElegirMaterial = ({ onMaterialSeleccionado }) => {
           </div>
         ))}
       </div>
-      {/* Botón "Continuar" eliminado, ya que la lógica se maneja automáticamente */}
     </div>
   )
 }

@@ -44,12 +44,12 @@
   column-gap: 20px;
   height: 100%;
   width: 100%;
+
   padding-bottom: 20px;
 }
 
 .class-form-group {
   position: relative;
-  left: 6%;
 }
 
 select.class-form-input {
@@ -65,16 +65,17 @@ select.class-form-input {
 }
 
 input.class-form-input {
-  width: 90%; /* O el porcentaje que desees */
+  width: 250%;
   font-family: 'Times New Roman', serif;
-  font-size: 0.8rem; /* Tamaño de fuente más pequeño */
+  font-size: 1rem;
   color: white;
-  padding: 0.4em 0.2em; /* Tamaño de padding más pequeño */
+  padding: 0.8em 0.5em;
+
   border: none;
   outline: none;
-  border-bottom: 1px solid white; /* Hice la línea inferior más delgada */
+  border-bottom: 1px solid white;
   background-color: transparent;
-  margin: 0 auto; /* Esto centrará horizontalmente el elemento */
+  margin: 0 auto 20px; /* Añade un margen inferior de 20px */
 }
 
 textarea.class-form-input {

@@ -6,7 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.samples.maderas.auth.payload.response.MessageResponse;
 import org.springframework.samples.maderas.exceptions.ResourceNotFoundException;
+import org.springframework.samples.maderas.pieza.Pieza;
+import org.springframework.samples.maderas.user.User;
 import org.springframework.samples.maderas.user.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,25 +42,26 @@ public class PedidoUserController {
         return new ResponseEntity<>(pedidoUser, HttpStatus.OK);
     }
 
-    @GetMapping("/username/{username}")
-    public ResponseEntity<PedidoUser> getPedidoByUsername(@PathVariable("username") String username) {
-        PedidoUser pedidoUser = pedidoUserService.getPedidoByUsername(username);
-        return new ResponseEntity<>(pedidoUser, HttpStatus.OK);
+    @GetMapping("/piezas")
+    public ResponseEntity<List<Pieza>> getLastPedidoByUsername() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findUserbyUsername(username);
+        PedidoUser pedidoUser = pedidoUserService.getLastPedidoByUserId(user.getId());
+        List<Pieza> piezas = pedidoUser.getPiezas();
+        System.out.println(piezas);
+        return new ResponseEntity<>(piezas, HttpStatus.OK);
     }
 
     @GetMapping("/userId/{userId}")
-    public ResponseEntity<PedidoUser> getPedidoByUserId(@PathVariable("userId") Integer userId) {
-        PedidoUser pedidoUser = pedidoUserService.getPedidoByUserId(userId);
+    public ResponseEntity<List<PedidoUser>> getPedidoByUserId(@PathVariable("userId") Integer userId) {
+        List<PedidoUser> pedidoUser = pedidoUserService.getPedidoByUserId(userId);
         return new ResponseEntity<>(pedidoUser, HttpStatus.OK);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<PedidoUser> createPedidoUser(@RequestBody @Valid PedidoUser pedidoUser) throws UnfeasiblePedidoUserUpdate {
-        String username = pedidoUser.getUser().getUsername();
-        validateUserExists(username);
-
-        PedidoUser newPedidoUser = pedidoUserService.createNewPedidoUser(pedidoUser, username);
+    public ResponseEntity<PedidoUser> createPedidoUser(@RequestBody Pieza pieza) throws UnfeasiblePedidoUserUpdate {
+        PedidoUser newPedidoUser = pedidoUserService.createNewPedidoUser(pieza);
         return new ResponseEntity<>(newPedidoUser, HttpStatus.CREATED);
     }
 

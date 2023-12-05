@@ -1,17 +1,16 @@
-.material-container {
+.opciones-container {
   display: flex;
   justify-content: space-around;
-  margin-top: 5%;
-  margin-left: 28%;
+  margin-top: 60px;
+  margin-right: 350px;
 }
 
-.material-material {
+.opcion-material {
   text-align: center;
-  margin-bottom: 20px;
-  margin-left: 30px; /* Ajusta la distancia entre cada opción */
+  margin-bottom: 20px; /* Ajusta la distancia entre cada opción */
 }
 
-.material-material img {
+.opcion-material img {
   width: 100%;
   max-width: 200px; /* Ajusta el tamaño máximo según tus necesidades */
   height: auto;
@@ -20,7 +19,7 @@
   margin-bottom: 10px;
 }
 
-.material-material .realizar-pedido-btn {
+.opcion-material .realizar-pedido-btn {
   padding: 1.3em 3em;
   font-size: 12px;
   text-transform: uppercase;
@@ -42,10 +41,11 @@
 }
 .titulo-material {
   text-align: center;
-  margin-top: 20px; /* Ajusta la distancia entre el título y las opciones */
+  margin-top: 20px;
+  margin-left: 30%;
 }
 
-.material-material .realizar-pedido-btn:hover {
+.opcion-material .realizar-pedido-btn:hover {
   background-color: #a08a60;
   box-shadow: 0px 15px 20px rgba(229, 177, 46, 0.4);
   color: #fff;
@@ -53,10 +53,10 @@
   transform: translateY(-7px);
 }
 
-.material-material .realizar-pedido-btn:active {
+.opcion-material .realizar-pedido-btn:active {
   transform: translateY(-1px);
 }
-.material-contenedor {
+.opcion-contenedor {
   display: flex;
   flex-direction: column;
   align-items: center;

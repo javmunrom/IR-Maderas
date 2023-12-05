@@ -15,7 +15,8 @@ import SwaggerDocs from './public/swagger'
 import HomeUser from './homeUser'
 import ElegirMaterial from './pedido/Material'
 import ElegirColor from './pedido/color'
-import CrearPiezaPage from './pedido'
+import CrearPiezaPage from './pedido/crearPieza'
+import PiezasPage from './pedido/piezas'
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
@@ -86,6 +87,7 @@ function App() {
           <Route path="/material" element={<ElegirMaterial />} />
           <Route path="/color" element={<ElegirColor />} />
           <Route path="/pieza" element={<CrearPiezaPage />} />
+          <Route path="/tuspiezas" element={<PiezasPage />} />
         </>
       )
     }

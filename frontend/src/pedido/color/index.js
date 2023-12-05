@@ -19,10 +19,10 @@ const ElegirColor = ({ onColorSeleccionado }) => {
   return (
     <div>
       <h2 className="titulo-material">Selecciona el color</h2>
-      <div className="opciones-container">
+      <div className="material-container">
         {opcionesDeColor.map((color) => (
-          <div key={color.nombre} className="opcion-material">
-            <div className="opcion-contenedor">
+          <div key={color.nombre} className="material-material">
+            <div className="material-contenedor">
               <img src={color.imagen} alt={color.nombre} />
               <p className="nombre-material">{color.nombre}</p>
               <button

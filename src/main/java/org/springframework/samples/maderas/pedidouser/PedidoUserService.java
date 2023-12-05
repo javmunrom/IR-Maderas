@@ -3,11 +3,16 @@ package org.springframework.samples.maderas.pedidouser;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.maderas.exceptions.ResourceNotFoundException;
+import org.springframework.samples.maderas.pieza.Pieza;
 import org.springframework.samples.maderas.user.User;
 import org.springframework.samples.maderas.user.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,29 +39,35 @@ public class PedidoUserService {
         return pedidoUser.orElse(null);
     }
 
-    @Transactional(readOnly = true)
-    public PedidoUser getPedidoByUsername(String username) {
-        Optional<PedidoUser> pedidoUser = pedidoUserRepository.findPedidoByUsername(username);
-        return pedidoUser.orElse(null);
-    }
 
     @Transactional(readOnly = true)
-    public PedidoUser getPedidoByUserId(Integer userId) {
-        Optional<PedidoUser> pedidoUser = pedidoUserRepository.findPedidoByUserId(userId);
-        return pedidoUser.orElse(null);
+    public List<PedidoUser> getPedidoByUserId(Integer userId) {
+        List<PedidoUser> pedidoUser = pedidoUserRepository.findPedidoByUserId(userId);
+        return pedidoUser;
     }
 
-    @Transactional
-    public PedidoUser createNewPedidoUser(PedidoUser pedidoUser, String username) throws UnfeasiblePedidoUserUpdate {
-        if (!userService.existsUser(username)) {
-            throw new ResourceNotFoundException("El usuario con el nombre: " + username + " no existe");
+
+    public PedidoUser getLastPedidoByUserId(Integer id) {
+        List<PedidoUser> pedidoUserList = pedidoUserRepository.findPedidoByUserId(id);
+        System.out.println(pedidoUserList);
+        if (!pedidoUserList.isEmpty()) {
+            pedidoUserList.sort((p1, p2) -> p2.getFechaPedido().compareTo(p1.getFechaPedido()));
+            return pedidoUserList.get(0);
         }
 
+        return null;
+    }
+    
+    @Transactional
+    public PedidoUser createNewPedidoUser(Pieza pieza) throws UnfeasiblePedidoUserUpdate {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         PedidoUser newPedidoUser = new PedidoUser();
-        BeanUtils.copyProperties(pedidoUser, newPedidoUser, "id");
-
         User user = userService.findUserbyUsername(username);
         newPedidoUser.setUser(user);
+        newPedidoUser.setFechaPedido(LocalDateTime.now());
+        List<Pieza> piezas = new ArrayList<>();
+        piezas.add(pieza);
+        newPedidoUser.setPiezas(piezas);
         return savePedidoUser(newPedidoUser);
     }
 
