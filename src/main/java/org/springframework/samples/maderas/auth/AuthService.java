@@ -39,8 +39,8 @@ public class AuthService {
 		user.setPhone(request.getPhone());
 		String strRoles = request.getAuthority();
 		Authorities role;
-		if(strRoles == "gestoradministrativo"){
-			role = authoritiesService.findByAuthority("GESTORADMINISTRATIVO");
+		if(strRoles == "owner"){
+			role = authoritiesService.findByAuthority("OWNER");
 			user.setAuthority(role);
 			userService.saveUser(user);
 		}else{

@@ -95,5 +95,18 @@ public class PedidoUserController {
             throw new ResourceNotFoundException("No existe el pedido con la ID: " + pedidoId);
         }
     }
+
+    @DeleteMapping("/piezas/{piezaId}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<MessageResponse> deletePiezaFromPedido(@PathVariable("piezaId") int piezaId) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.findUserbyUsername(username);
+        Integer pedidoId = pedidoUserService.getLastPedidoByUserId(user.getId()).getId();
+        pedidoUserService.eliminarPiezaDePedido(pedidoId, piezaId);
+
+        return new ResponseEntity<>(new MessageResponse("Pieza eliminada del pedido correctamente"), HttpStatus.OK);
+    }
+
+
 }
 

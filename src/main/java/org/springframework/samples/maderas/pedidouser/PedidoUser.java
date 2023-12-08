@@ -23,15 +23,16 @@ import lombok.Setter;
 @Setter
 public class PedidoUser extends BaseEntity {
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDateTime fechaPedido;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDateTime fechaPedidoTerminado;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "pedido_user_id")
     List<Pieza> piezas;
+
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")

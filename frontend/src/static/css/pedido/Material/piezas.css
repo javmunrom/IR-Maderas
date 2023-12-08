@@ -8,7 +8,7 @@
 
 .pieza-item {
   flex-basis: calc(
-    45% - 20px
+    50% - 20px
   ); /* Dos columnas con espacio entre ellas, menos ancho */
   border: 2px solid #8b4513;
   background-color: #d2b48c;
@@ -28,10 +28,120 @@
   max-height: 100%; /* La imagen ocupará la altura completa de la caja */
   object-fit: cover;
   margin-right: 10px;
+  border-radius: 5px;
 }
 
 .pieza-info {
   display: flex;
   flex-direction: column;
   flex-grow: 1; /* La información ocupa todo el espacio disponible */
+}
+.pieza-info button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pieza-info button:hover {
+  background-color: #45a049;
+}
+
+.pieza-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.pieza-buttons button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 123px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 10px; /* Añade un espacio entre los botones */
+}
+
+.pieza-buttons button:hover {
+  background-color: #45a049;
+}
+.nueva-pieza-btn-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.nueva-pieza-btn {
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: solid 2px var(--main-green-color);
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  width: 80%;
+  margin-left: 150px;
+}
+
+.nueva-pieza-btn:hover {
+  background-color: var(--main-green-color);
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.nueva-pieza-btn:active {
+  transform: translateY(-1px);
+}
+
+/* Estilos para el botón Completar */
+.completar-btn-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.completar-btn {
+  padding: 1em 1em; /* Ajustar el tamaño del botón */
+  font-size: 15px; /* Ajustar el tamaño del texto */
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: solid 2px rgba(69, 53, 15, 0.4);
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.completar-btn:hover {
+  background-color: rgba(69, 53, 15, 0.4);
+  box-shadow: 0px 15px 20px rgba(69, 53, 15, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.completar-btn:active {
+  transform: translateY(-1px);
 }

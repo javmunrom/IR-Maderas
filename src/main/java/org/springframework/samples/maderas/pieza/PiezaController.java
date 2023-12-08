@@ -10,6 +10,9 @@ import org.springframework.samples.maderas.pedidouser.PedidoUser;
 import org.springframework.samples.maderas.pedidouser.PedidoUserService;
 import org.springframework.samples.maderas.pedidouser.UnfeasiblePedidoUserUpdate;
 import org.springframework.samples.maderas.tablero.Tablero;
+import org.springframework.samples.maderas.user.User;
+import org.springframework.samples.maderas.user.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,11 +31,13 @@ public class PiezaController {
 
     private final PiezaService piezaService;
     private final PedidoUserService pedidoUserService;
+    private final UserService userService;
 
     @Autowired
-    public PiezaController(PiezaService piezaService, PedidoUserService pedidoUserService) {
+    public PiezaController(PiezaService piezaService, PedidoUserService pedidoUserService, UserService userService) {
         this.piezaService = piezaService;
         this.pedidoUserService = pedidoUserService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -55,6 +60,39 @@ public class PiezaController {
     piezaService.savePieza(nuevaPieza);
     PedidoUser p = pedidoUserService.createNewPedidoUser(nuevaPieza);
     return new ResponseEntity<>(nuevaPieza, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/addToPedido")
+    public ResponseEntity<Pieza> agregarPiezaAPedido(@RequestBody CrearPiezaRequest request) throws UnfeasiblePedidoUserUpdate {
+        try {
+            Tablero tablero = request.getTablero();
+            NuevaPiezaData nuevaPiezaData = request.getNuevaPiezaData();
+            Pieza nuevaPieza = new Pieza(nuevaPiezaData.getCantoLadoLargo(), nuevaPiezaData.getCantoLadoCorto(),
+                    nuevaPiezaData.getMedidaLargo(), nuevaPiezaData.getMedidaCorto(), nuevaPiezaData.getDiseño(),
+                    tablero, nuevaPiezaData.getCantidad());
+
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = userService.findUserbyUsername(username);
+            PedidoUser pedidoUser = pedidoUserService.getLastPedidoByUserId(user.getId());
+
+
+            if (pedidoUser == null) {
+                // Manejar el caso en el que el pedido no existe
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+
+            // Agregar la pieza al pedido existente
+            List<Pieza> piezas = pedidoUser.getPiezas();
+            piezaService.savePieza(nuevaPieza);
+            piezas.add(nuevaPieza);
+            pedidoUser.setPiezas(piezas);
+            pedidoUserService.savePedidoUser(pedidoUser);
+
+            return new ResponseEntity<>(nuevaPieza, HttpStatus.CREATED);
+        } catch (UnfeasiblePedidoUserUpdate e) {
+            // Manejar cualquier excepción
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PutMapping("/{piezaId}")

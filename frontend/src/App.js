@@ -17,6 +17,8 @@ import ElegirMaterial from './pedido/Material'
 import ElegirColor from './pedido/color'
 import CrearPiezaPage from './pedido/crearPieza'
 import PiezasPage from './pedido/piezas'
+import AgregarPiezaAPedidoPage from './pedido/crearPieza/añadirpiezas'
+import MisPedidosPage from './mispedidos'
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
@@ -46,7 +48,7 @@ function App() {
   let publicRoutes = <></>
 
   roles.forEach((role) => {
-    if (role === 'GESTORADMINISTRATIVO') {
+    if (role === 'OWNER') {
       adminRoutes = (
         <>
           <Route
@@ -87,7 +89,9 @@ function App() {
           <Route path="/material" element={<ElegirMaterial />} />
           <Route path="/color" element={<ElegirColor />} />
           <Route path="/pieza" element={<CrearPiezaPage />} />
+          <Route path="/nuevapieza" element={<AgregarPiezaAPedidoPage />} />
           <Route path="/tuspiezas" element={<PiezasPage />} />
+          <Route path="/mispedidos" element={<MisPedidosPage />} />
         </>
       )
     }

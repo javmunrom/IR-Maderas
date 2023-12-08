@@ -1,6 +1,6 @@
-INSERT INTO authorities(id,authority) VALUES (1,'GESTORADMINISTRATIVO');
+INSERT INTO authorities(id,authority) VALUES (1,'OWNER');
 INSERT INTO authorities(id,authority) VALUES (2,'USER');
-INSERT INTO appusers(id,username,password,email,phone,authority) VALUES (1,'gestoradministrativo1','$2a$10$nMmTWAhPTqXqLDJTag3prumFrAJpsYtroxf0ojesFYq0k4PmcbWUS','gestoradministrativo1@gmail,com','111111111',1);
+INSERT INTO appusers(id,username,password,email,phone,authority) VALUES (1,'owner1','$2a$10$KWCE.PBwj0kgCAmo5rtfCOhvSN6XFo0Fr9ftrQ0i94MwnqRSKnczS','owner1@gmail,com','111111111',1);
 
 
 INSERT INTO appusers(id,username,password,email,phone,authority) VALUES (2,'user1','$2a$10$nMmTWAhPTqXqLDJTag3prumFrAJpsYtroxf0ojesFYq0k4PmcbWUS','user1@gmail,com','111111111',2), (3,'1','$2a$10$KWCE.PBwj0kgCAmo5rtfCOhvSN6XFo0Fr9ftrQ0i94MwnqRSKnczS','1@gmail,com','111111111', 2);

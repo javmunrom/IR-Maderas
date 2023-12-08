@@ -46,7 +46,7 @@ public class PedidoUserService {
         return pedidoUser;
     }
 
-
+    @Transactional
     public PedidoUser getLastPedidoByUserId(Integer id) {
         List<PedidoUser> pedidoUserList = pedidoUserRepository.findPedidoByUserId(id);
         System.out.println(pedidoUserList);
@@ -56,6 +56,17 @@ public class PedidoUserService {
         }
 
         return null;
+    }
+
+    @Transactional
+    public void eliminarPiezaDePedido(Integer pedidoId, Integer piezaId) {
+        PedidoUser pedido = pedidoUserRepository.findById(pedidoId).orElse(null);
+
+        if (pedido != null) {
+            List<Pieza> piezas = pedido.getPiezas();
+            piezas.removeIf(p -> p.getId().equals(piezaId));
+            pedidoUserRepository.save(pedido);
+        }
     }
     
     @Transactional
@@ -71,6 +82,8 @@ public class PedidoUserService {
         return savePedidoUser(newPedidoUser);
     }
 
+
+    
     @Transactional
     public void deletePedidoUser(int id) {
         PedidoUser pedidoUserToDelete = getPedidoById(id);

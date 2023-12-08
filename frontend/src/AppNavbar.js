@@ -34,7 +34,7 @@ function AppNavbar() {
   let publicLinks = <></>
 
   roles.forEach((role) => {
-    if (role === 'GESTORADMINISTRATIVO') {
+    if (role === 'OWNER') {
       adminLinks = (
         <>
           <NavItem>
@@ -79,7 +79,7 @@ function AppNavbar() {
       userLinks = (
         <>
           <NavItem>
-            <NavLink style={{ color: 'white' }} tag={Link} to="/myOrders">
+            <NavLink style={{ color: 'white' }} tag={Link} to="/mispedidos">
               Mis Pedidos
             </NavLink>
           </NavItem>
@@ -111,16 +111,6 @@ function AppNavbar() {
   if (!jwt) {
     publicLinks = (
       <>
-        <NavItem>
-          <NavLink style={{ color: 'white' }} id="docs" tag={Link} to="/docs">
-            Docs
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink style={{ color: 'white' }} id="plans" tag={Link} to="/plans">
-            Pricing Plans
-          </NavLink>
-        </NavItem>
         <NavItem>
           <NavLink
             style={{ color: 'white' }}
