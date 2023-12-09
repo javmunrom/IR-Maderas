@@ -38,49 +38,18 @@ function AppNavbar() {
       adminLinks = (
         <>
           <NavItem>
-            <NavLink style={{ color: 'white' }} tag={Link} to="/owners">
-              Owners
+            <NavLink style={{ color: 'white' }} tag={Link} to="/pedidoOwner">
+              | Hacer Pedido |
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink style={{ color: 'white' }} tag={Link} to="/pets">
-              Pets
+            <NavLink style={{ color: 'white' }} tag={Link} to="/pedidosAll">
+              | Pedidos Usuarios |
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink style={{ color: 'white' }} tag={Link} to="/vets">
-              Vets
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink style={{ color: 'white' }} tag={Link} to="/consultations">
-              Consultations
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink style={{ color: 'white' }} tag={Link} to="/clinicOwners">
-              Clinic Owners
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink style={{ color: 'white' }} tag={Link} to="/clinics">
-              Clinics
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink style={{ color: 'white' }} tag={Link} to="/users">
-              Users
-            </NavLink>
-          </NavItem>
-        </>
-      )
-    }
-    if (role === 'USER') {
-      userLinks = (
-        <>
-          <NavItem>
-            <NavLink style={{ color: 'white' }} tag={Link} to="/mispedidos">
-              Mis Pedidos
+            <NavLink style={{ color: 'white' }} tag={Link} to="/pedidoOwnerAll">
+              | Tus Pedidos |
             </NavLink>
           </NavItem>
         </>
@@ -100,7 +69,43 @@ function AppNavbar() {
               tag={Link}
               to="/logout"
             >
-              Logout
+              | Logout |
+            </NavLink>
+          </NavItem>
+        </>
+      )
+    }
+    if (role === 'USER') {
+      userLinks = (
+        <>
+          <NavItem>
+            <NavLink style={{ color: 'white' }} tag={Link} to="/homeuser">
+              | Hacer Pedido |
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink style={{ color: 'white' }} tag={Link} to="/mispedidos">
+              | Mis Pedidos |
+            </NavLink>
+          </NavItem>
+        </>
+      )
+      userLogout = (
+        <>
+          <NavbarText
+            style={{ color: 'white' }}
+            className="justify-content-end"
+          >
+            {username}
+          </NavbarText>
+          <NavItem className="d-flex">
+            <NavLink
+              style={{ color: 'white' }}
+              id="logout"
+              tag={Link}
+              to="/logout"
+            >
+              | Logout |
             </NavLink>
           </NavItem>
         </>
@@ -118,12 +123,12 @@ function AppNavbar() {
             tag={Link}
             to="/register"
           >
-            Register
+            | Register |
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink style={{ color: 'white' }} id="login" tag={Link} to="/login">
-            Login
+            | Login |
           </NavLink>
         </NavItem>
       </>
@@ -133,7 +138,7 @@ function AppNavbar() {
   return (
     <div>
       <Navbar expand="md" dark color="dark">
-        <NavbarBrand href="/homeuser">
+        <NavbarBrand href={roles.includes('OWNER') ? '/' : '/homeuser'}>
           <img
             alt="logo"
             src="/logoSinFondo.png"

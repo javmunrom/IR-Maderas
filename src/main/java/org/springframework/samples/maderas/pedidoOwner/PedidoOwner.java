@@ -1,4 +1,4 @@
-package org.springframework.samples.maderas.pedidouser;
+package org.springframework.samples.maderas.pedidoOwner;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.maderas.model.BaseEntity;
 import org.springframework.samples.maderas.pieza.Pieza;
+import org.springframework.samples.maderas.tablero.Tablero;
 import org.springframework.samples.maderas.user.User;
 
 import jakarta.persistence.CascadeType;
@@ -15,6 +16,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,7 +25,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class PedidoUser extends BaseEntity {
+public class PedidoOwner extends BaseEntity {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDateTime fechaPedido;
@@ -31,9 +33,9 @@ public class PedidoUser extends BaseEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDateTime fechaPedidoTerminado;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pedido_user_id")
-    List<Pieza> piezas;
+    @ManyToOne // Cambia de @OneToOne a @ManyToOne
+    @JoinColumn(name = "tablero_id") // Cambia el nombre de la columna si es necesario
+    private Tablero tablero;
 
 
     @ManyToOne
@@ -42,17 +44,17 @@ public class PedidoUser extends BaseEntity {
 
     Double precio;
 
-    @Enumerated(EnumType.STRING)
-    Estado estado;
+    Integer cantidad;
 
-    public PedidoUser() {
+    Proveedor proveedor;
+
+
+    public PedidoOwner() {
     }
 
-    public PedidoUser(LocalDateTime fechaPedido, LocalDateTime fechaPedidoTerminado, Double precio, List<Pieza> piezas) {
+    public PedidoOwner(LocalDateTime fechaPedido, LocalDateTime fechaPedidoTerminado, Double precio, List<Pieza> piezas) {
         this.fechaPedido = LocalDateTime.now();
         this.fechaPedidoTerminado = fechaPedidoTerminado;
         this.precio = precio;
-        this.piezas = piezas;
-        this.estado = Estado.INCOMPLETO;
     }
 }

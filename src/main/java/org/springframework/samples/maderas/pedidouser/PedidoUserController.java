@@ -75,6 +75,14 @@ public class PedidoUserController {
         return new ResponseEntity<>(updatedPedidoUser, HttpStatus.OK);
     }
 
+    @PutMapping("/{pedidoId}/estado")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<PedidoUser> updateEstadoPedido(@PathVariable("pedidoId") int pedidoId, @RequestBody NuevoEstado nuevoEstado) {
+        System.out.println("AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII: "+nuevoEstado.getNuevoEstado());
+        PedidoUser updatedPedidoUser = pedidoUserService.updateEstadoPedido(pedidoId, nuevoEstado.getNuevoEstado());
+        return new ResponseEntity<>(updatedPedidoUser, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{pedidoId}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<MessageResponse> deletePedidoUser(@PathVariable("pedidoId") int pedidoId) {

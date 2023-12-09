@@ -9,6 +9,7 @@ body {
 }
 
 .auth-button {
+  margin-top: 20px;
   padding: 1.3em 3em;
   font-size: 12px;
   text-transform: uppercase;
@@ -22,6 +23,7 @@ body {
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
+  margin-bottom: 30px;
 }
 
 .auth-button:hover {

@@ -24,6 +24,20 @@ const MisPedidosPage = () => {
 
     fetchPedidos()
   }, [])
+  const formatFecha = (fecha) => {
+    const fechaFormateada = new Date(fecha)
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      timeZoneName: 'short',
+    }
+
+    return fechaFormateada.toLocaleDateString('es-ES', options)
+  }
 
   return (
     <div>
@@ -36,7 +50,7 @@ const MisPedidosPage = () => {
               <div className="pedido-container">
                 <div className="pedido-info">
                   <h3>Pedido ID: {pedido.id}</h3>
-                  <p>Fecha de Creación: {pedido.fechaPedido}</p>
+                  <p>Fecha de Creación: {formatFecha(pedido.fechaPedido)}</p>
                 </div>
 
                 {pedido.piezas.length > 0 && (

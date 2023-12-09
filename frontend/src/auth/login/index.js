@@ -24,7 +24,8 @@ export default function Login() {
       .then(function (data) {
         tokenService.setUser(data)
         tokenService.updateLocalAccessToken(data.token)
-        window.location.href = '/homeuser'
+        window.location.href = '/'
+        console.log(tokenService.g)
       })
       .catch((error) => {
         setMessage(error)

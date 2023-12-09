@@ -1,0 +1,76 @@
+.pedido-owner-container {
+  padding: 20px;
+}
+
+.pedido-owner-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Ajusta la alineación */
+}
+
+.pedido-owner-item {
+  flex-basis: calc(50% - 20px); /* Dos columnas con espacio entre ellas */
+  display: flex; /* Agregar display flex para poder usar flex-direction */
+  border: 2px solid #8b4513;
+  background-color: #d2b48c;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.pedido-owner-item img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.tablero-info-container {
+  background-color: #ecd9c6;
+  padding: 20px;
+  border-radius: 10px 10px 10px 10px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tablero-info {
+  display: flex; /* Usar display flex para los elementos internos */
+  flex-direction: row; /* Cambiar a dirección de fila para que la imagen esté a la izquierda y el texto a la derecha */
+  align-items: center; /* Alinear verticalmente los elementos en el centro */
+}
+.tablero-info img {
+  width: 200px; /* Tamaño deseado en píxeles */
+  height: 200px; /* Ajusta el ancho según sea necesario */
+  max-height: 100%; /* La imagen ocupará la altura completa de la caja */
+  object-fit: cover;
+  margin-right: 25px;
+  border-radius: 5px;
+}
+
+.pedido-owner-info {
+  padding: 20px;
+}
+
+.pedido-owner-info p {
+  margin-bottom: 10px;
+}
+
+.pedido-owner-info button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pedido-owner-info button:hover {
+  background-color: #45a049;
+}

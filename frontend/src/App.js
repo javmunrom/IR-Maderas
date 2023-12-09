@@ -9,8 +9,6 @@ import Register from './auth/register'
 import Login from './auth/login'
 import Logout from './auth/logout'
 import tokenService from './services/token.service'
-import UserListAdmin from './admin/users/UserListAdmin'
-import UserEditAdmin from './admin/users/UserEditAdmin'
 import SwaggerDocs from './public/swagger'
 import HomeUser from './homeUser'
 import ElegirMaterial from './pedido/Material'
@@ -19,6 +17,9 @@ import CrearPiezaPage from './pedido/crearPieza'
 import PiezasPage from './pedido/piezas'
 import AgregarPiezaAPedidoPage from './pedido/crearPieza/añadirpiezas'
 import MisPedidosPage from './mispedidos'
+import PedidosPage from './admin/todoslospedidos'
+import PedidoOwner from './admin/pedidoOwner'
+import PedidosOwnerPage from './admin/allPedidosOwner'
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
@@ -51,25 +52,19 @@ function App() {
     if (role === 'OWNER') {
       adminRoutes = (
         <>
-          <Route
-            path="/users"
-            exact={true}
-            element={
-              <PrivateRoute>
-                <UserListAdmin />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/users/:username"
-            exact={true}
-            element={
-              <PrivateRoute>
-                <UserEditAdmin />
-              </PrivateRoute>
-            }
-          />
           <Route path="/logout" element={<Logout />} />
+
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/pedidosAll" element={<PedidosPage />} />
+          <Route path="/pedidoOwner" element={<PedidoOwner />} />
+          <Route path="/pedidoOwnerAll" element={<PedidosOwnerPage />} />
         </>
       )
     }

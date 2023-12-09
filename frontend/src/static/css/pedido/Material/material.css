@@ -1,8 +1,6 @@
 .material-container {
   display: flex;
-  justify-content: space-around;
-  margin-top: 5%;
-  margin-left: 28%;
+  justify-content: center;
 }
 
 .material-material {
@@ -39,10 +37,6 @@
   cursor: pointer;
   outline: none;
   width: 80%;
-}
-.titulo-material {
-  text-align: center;
-  margin-top: 20px; /* Ajusta la distancia entre el título y las opciones */
 }
 
 .material-material .realizar-pedido-btn:hover {

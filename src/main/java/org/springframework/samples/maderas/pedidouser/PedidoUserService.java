@@ -79,11 +79,18 @@ public class PedidoUserService {
         List<Pieza> piezas = new ArrayList<>();
         piezas.add(pieza);
         newPedidoUser.setPiezas(piezas);
+        newPedidoUser.setEstado(Estado.INCOMPLETO);
         return savePedidoUser(newPedidoUser);
     }
-
-
+    @Transactional
+    public PedidoUser updateEstadoPedido(int pedidoId, String nuevoEstado) {
+        PedidoUser pedidoUser = pedidoUserRepository.findById(pedidoId)
+                .orElse(null);
+        pedidoUser.setEstado(Estado.valueOf(nuevoEstado));
     
+        return pedidoUserRepository.save(pedidoUser);
+    }
+
     @Transactional
     public void deletePedidoUser(int id) {
         PedidoUser pedidoUserToDelete = getPedidoById(id);

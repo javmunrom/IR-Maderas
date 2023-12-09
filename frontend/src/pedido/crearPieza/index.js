@@ -89,7 +89,7 @@ const CrearPiezaPage = () => {
         )}
 
         {tipoMaterial && color && tablero && (
-          <div>
+          <div className=".opciones-form-container">
             <FormGenerator
               ref={null} // Ref no se usa en este ejemplo, ajusta según tus necesidades
               inputs={nuevaPiezaFormInputs}

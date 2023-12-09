@@ -42,16 +42,25 @@
   justify-content: center;
   align-items: center;
   column-gap: 20px;
-  height: 100%;
-  width: 100%;
-
-  padding-bottom: 20px;
+  width: 80%;
+  max-width: 400px; /* Establece un ancho máximo según tus necesidades */
+  background-color: rgba(
+    71,
+    47,
+    27,
+    0.8
+  ); /* Utiliza el cuarto valor para la opacidad */
+  padding: 20px;
+  border-radius: 10px; /* Ajusta el radio según tus necesidades */
 }
 
 .class-form-group {
   position: relative;
+  margin-left: 30px;
 }
-
+.class-form-input {
+  margin-left: 30px;
+}
 select.class-form-input {
   width: 100%;
   font-family: 'Georgia', serif;
@@ -65,12 +74,11 @@ select.class-form-input {
 }
 
 input.class-form-input {
-  width: 250%;
+  width: 80%;
   font-family: 'Times New Roman', serif;
   font-size: 1rem;
   color: white;
   padding: 0.8em 0.5em;
-
   border: none;
   outline: none;
   border-bottom: 1px solid white;

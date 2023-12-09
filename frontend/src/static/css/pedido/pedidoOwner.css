@@ -1,0 +1,110 @@
+/* PedidoOwner.css */
+.todoproveedor-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+}
+
+.proveedor-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  width: 100%; /* Ajusta el ancho al 100% */
+  margin-bottom: 50px;
+}
+
+.proveedor-box {
+  text-align: center;
+  background-color: beige;
+  border: 2px solid #6c757d;
+  border-radius: 10px;
+  width: 200px; /* Tamaño fijo para todas las cajas, ajusta según sea necesario */
+  height: 300px; /* Tamaño fijo para todas las cajas, ajusta según sea necesario */
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column; /* Alinea la imagen y el botón verticalmente */
+  align-items: center; /* Centra verticalmente */
+  justify-content: center; /* Centra horizontalmente */
+}
+
+.proveedor-image {
+  width: 100%;
+  max-width: 100%; /* Ajusta el tamaño máximo para la imagen */
+  height: auto; /* Ajusta la altura automáticamente para mantener la proporción */
+  border-radius: 8px;
+  margin-bottom: 10px; /* Espacio entre la imagen y el botón */
+}
+
+.proveedor-button {
+  margin-top: 10px; /* Ajusta la distancia desde la parte superior de la caja */
+  padding: 1em 1em; /* Ajustar el tamaño del botón */
+  font-size: 15px; /* Ajustar el tamaño del texto */
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: solid 2px rgba(69, 53, 15, 0.4);
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.proveedor-button:hover {
+  background-color: rgba(69, 53, 15, 0.4);
+  box-shadow: 0px 15px 20px rgba(69, 53, 15, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.proveedor-button:active {
+  transform: translateY(-1px);
+}
+
+.completar-btn-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+.cantidad-input {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px; /* Ajusta el margen según tus necesidades */
+  margin-left: 30px;
+}
+
+/* Estilos para el botón de continuar */
+.continuar-btn {
+  padding: 8px;
+  font-size: 14px;
+  background-color: #4caf50; /* Color de fondo del botón */
+  color: #fff; /* Color del texto del botón */
+  border: 1px solid #4caf50; /* Borde del botón */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transición al pasar el ratón */
+}
+
+/* Estilo al pasar el ratón sobre el botón de continuar */
+.continuar-btn:hover {
+  background-color: #45a049;
+}
+.proveedor-box.seleccionado {
+  background-color: #4caf50;
+}
+
+/* Estilo para la marca de selección */
+.marca-seleccion {
+  font-size: 24px; /* Tamaño de la marca de selección */
+  color: #28a745; /* Color de la marca de selección */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
