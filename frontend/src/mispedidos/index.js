@@ -51,6 +51,7 @@ const MisPedidosPage = () => {
                 <div className="pedido-info">
                   <h3>Pedido ID: {pedido.id}</h3>
                   <p>Fecha de Creación: {formatFecha(pedido.fechaPedido)}</p>
+                  <p>Estado del pedido: {pedido.estado}</p>
                 </div>
 
                 {pedido.piezas.length > 0 && (
