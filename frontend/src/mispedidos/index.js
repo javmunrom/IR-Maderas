@@ -38,6 +38,20 @@ const MisPedidosPage = () => {
 
     return fechaFormateada.toLocaleDateString('es-ES', options)
   }
+  const obtenerEstadoLegible = (estado) => {
+    switch (estado) {
+      case 'INCOMPLETO':
+        return 'Incompleto'
+      case 'ENPRODUCCION':
+        return 'En Producción'
+      case 'LISTOPARARECOGIDA':
+        return 'Listo para Recogida'
+      case 'ENTREGADO':
+        return 'Entregado'
+      default:
+        return 'Desconocido'
+    }
+  }
 
   return (
     <div>
@@ -51,7 +65,9 @@ const MisPedidosPage = () => {
                 <div className="pedido-info">
                   <h3>Pedido ID: {pedido.id}</h3>
                   <p>Fecha de Creación: {formatFecha(pedido.fechaPedido)}</p>
-                  <p>Estado del pedido: {pedido.estado}</p>
+                  <p>
+                    Estado del pedido: {obtenerEstadoLegible(pedido.estado)}
+                  </p>
                 </div>
 
                 {pedido.piezas.length > 0 && (
